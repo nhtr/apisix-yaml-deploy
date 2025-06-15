@@ -1,0 +1,14 @@
+dashboard:
+  enabled: true
+
+gateway:
+  type: NodePort
+  http:
+    nodePort: 30080
+
+admin:
+  allow:
+    - 0.0.0.0/0
+
+ingress-controller:
+  enabled: true

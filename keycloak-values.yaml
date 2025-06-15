@@ -1,0 +1,37 @@
+auth:
+  adminUser: admin
+  adminPassword: admin
+
+proxy: edge
+http:
+  relativePath: /auth
+  enabled: true
+  httpPort: 8080
+
+hostname:
+  hostname: keycloak.local
+  strict: false
+  admin: true
+
+service:
+  type: ClusterIP
+
+ingress:
+  enabled: true
+  hostname: keycloak.local
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+  path: /
+  pathType: Prefix
+  ingressClassName: nginx
+  servicePort: http
+
+postgresql:
+  enabled: true
+  architecture: standalone
+  postgresql:
+    primary:
+      persistence:
+        enabled: true
+      podSecurityContext:
+        fsGroup: 1001
